@@ -27,7 +27,7 @@ class SignupScreen extends StatelessWidget {
               const TLoginDivider(dividerText: TTexts.orSignUpWith),
               const SizedBox(height: TSizes.spaceBtwSections,),
               const TLoginSocialBtn(),
-              const SizedBox(height: TSizes.spaceBtwSections,),
+              const SizedBox(height: TSizes.spaceBtwSections,)
             ],
           ),
         ),
