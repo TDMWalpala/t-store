@@ -37,6 +37,7 @@ class TPrimaryHeaderContainer extends StatelessWidget {
                   background: TColors.textWhite.withOpacity(0.1),
                 ),
               ),
+              child,
             ],
           ),
         ),
