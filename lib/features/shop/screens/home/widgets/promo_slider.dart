@@ -10,9 +10,9 @@ import 'package:t_store/utils/constants/sizes.dart';
 
 class TPromoSlider extends StatelessWidget {
   const TPromoSlider({
-    super.key,
+    super.key, required this.banners,
   });
-
+  final List<String> banners;
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
@@ -23,11 +23,7 @@ class TPromoSlider extends StatelessWidget {
               viewportFraction: 1,
               onPageChanged: (index, _) =>
                   controller.updatePageIndicator(index)),
-          items: const [
-            TRoundedImage(imageUrl: TImages.promoBanner1),
-            TRoundedImage(imageUrl: TImages.promoBanner2),
-            TRoundedImage(imageUrl: TImages.promoBanner3),
-          ],
+          items: banners.map((url) => TRoundedImage(imageUrl: url)).toList(),
         ),
         const SizedBox(
           height: TSizes.spaceBtwItems,
@@ -37,7 +33,7 @@ class TPromoSlider extends StatelessWidget {
             () => Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < banners.length; i++)
                   TCircularContainer(
                     width: 20,
                     height: 4,
