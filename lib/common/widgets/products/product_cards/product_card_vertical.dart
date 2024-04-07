@@ -8,6 +8,7 @@ import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/text/product_price_text.dart';
 import 'package:t_store/common/widgets/text/product_title_text.dart';
 import 'package:t_store/utils/constants/colors.dart';
+import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -78,24 +79,7 @@ class TProductCardVertical extends StatelessWidget {
                     title: 'Green Nike Air Shoes',
                     smallSize: true,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'Nike',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(
-                        width: TSizes.xs,
-                      ),
-                      const Icon(
-                        Iconsax.verify5,
-                        color: TColors.primary,
-                        size: TSizes.iconXs,
-                      )
-                    ],
-                  ),
+                  TBrandTitleWithVerificationIcon(title: 'Nike', ),
                 ],
               ),
             ),
@@ -113,7 +97,8 @@ class TProductCardVertical extends StatelessWidget {
                         color: TColors.black,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(TSizes.cardRadiusMd),
-                          bottomRight: Radius.circular(TSizes.productImageRadius),
+                          bottomRight:
+                              Radius.circular(TSizes.productImageRadius),
                         )),
                     child: const SizedBox(
                         height: TSizes.iconLg * 1.2,
@@ -130,6 +115,85 @@ class TProductCardVertical extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class TBrandTitleWithVerificationIcon extends StatelessWidget {
+  const TBrandTitleWithVerificationIcon({
+    super.key,
+    required this.title,
+    this.maxLines = 1,
+    this.textColor,
+    this.iconColor = TColors.primary,
+    this.textAlign = TextAlign.center,
+    this.brandTextSize = TextSizes.small,
+  });
+
+  final String title;
+  final int maxLines;
+  final Color? textColor, iconColor;
+  final TextAlign? textAlign;
+  final TextSizes brandTextSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          child: TBrandTitleText(
+            title: title,
+            color: textColor,
+            maxLines: maxLines,
+            textAlign: textAlign,
+            brandTextSize: brandTextSize,
+
+          ),
+        ),
+        const SizedBox(
+          width: TSizes.xs,
+        ),
+        const Icon(
+          Iconsax.verify5,
+          color: TColors.primary,
+          size: TSizes.iconXs,
+        )
+      ],
+    );
+  }
+}
+
+class TBrandTitleText extends StatelessWidget {
+  const TBrandTitleText({
+    super.key,
+    required this.title,
+    this.color,
+    this.maxLines = 1,
+    this.textAlign = TextAlign.center,
+    this.brandTextSize = TextSizes.small,
+  });
+
+  final String title;
+  final Color? color;
+  final int maxLines;
+  final TextAlign? textAlign;
+  final TextSizes brandTextSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      textAlign: textAlign,
+      overflow: TextOverflow.ellipsis,
+      maxLines: maxLines,
+      style: brandTextSize == TextSizes.small
+          ? Theme.of(context).textTheme.labelMedium!.apply(color: color)
+          : brandTextSize == TextSizes.medium
+              ? Theme.of(context).textTheme.bodyLarge!.apply(color: color)
+              : brandTextSize == TextSizes.large
+                  ? Theme.of(context).textTheme.titleLarge!.apply(color: color)
+                  : Theme.of(context).textTheme.bodyMedium!.apply(color: color),
     );
   }
 }
