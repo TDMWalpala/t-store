@@ -6,7 +6,7 @@ import 'package:t_store/common/widgets/custom_shapes/containers/search_container
 import 'package:t_store/common/widgets/images/circular_image.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products.card/card_menu_icon.dart';
-import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:t_store/common/widgets/text/brand_title_text_with_verified.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/enums.dart';
@@ -94,7 +94,7 @@ class StoreScreen extends StatelessWidget {
                                             brandTextSize: TextSizes.large,
                                           ),
                                           Text(
-                                            '56 products vvcxknxlvnll vpopcvcx;v',
+                                            '56 products',
                                             overflow: TextOverflow.ellipsis,
                                             style: Theme.of(context)
                                                 .textTheme

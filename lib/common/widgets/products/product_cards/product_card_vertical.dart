@@ -5,10 +5,10 @@ import 'package:t_store/common/styles/shadows.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:t_store/common/widgets/icons/circular_icon.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
+import 'package:t_store/common/widgets/text/brand_title_text_with_verified.dart';
 import 'package:t_store/common/widgets/text/product_price_text.dart';
 import 'package:t_store/common/widgets/text/product_title_text.dart';
 import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -70,12 +70,12 @@ class TProductCardVertical extends StatelessWidget {
             const SizedBox(
               height: TSizes.spaceBtwItems / 2,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: TSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: TSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TProductTitleText(
+                  TProductTitleText(
                     title: 'Green Nike Air Shoes',
                     smallSize: true,
                   ),
@@ -119,81 +119,5 @@ class TProductCardVertical extends StatelessWidget {
   }
 }
 
-class TBrandTitleWithVerificationIcon extends StatelessWidget {
-  const TBrandTitleWithVerificationIcon({
-    super.key,
-    required this.title,
-    this.maxLines = 1,
-    this.textColor,
-    this.iconColor = TColors.primary,
-    this.textAlign = TextAlign.center,
-    this.brandTextSize = TextSizes.small,
-  });
 
-  final String title;
-  final int maxLines;
-  final Color? textColor, iconColor;
-  final TextAlign? textAlign;
-  final TextSizes brandTextSize;
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Flexible(
-          child: TBrandTitleText(
-            title: title,
-            color: textColor,
-            maxLines: maxLines,
-            textAlign: textAlign,
-            brandTextSize: brandTextSize,
-
-          ),
-        ),
-        const SizedBox(
-          width: TSizes.xs,
-        ),
-        const Icon(
-          Iconsax.verify5,
-          color: TColors.primary,
-          size: TSizes.iconXs,
-        )
-      ],
-    );
-  }
-}
-
-class TBrandTitleText extends StatelessWidget {
-  const TBrandTitleText({
-    super.key,
-    required this.title,
-    this.color,
-    this.maxLines = 1,
-    this.textAlign = TextAlign.center,
-    this.brandTextSize = TextSizes.small,
-  });
-
-  final String title;
-  final Color? color;
-  final int maxLines;
-  final TextAlign? textAlign;
-  final TextSizes brandTextSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      title,
-      textAlign: textAlign,
-      overflow: TextOverflow.ellipsis,
-      maxLines: maxLines,
-      style: brandTextSize == TextSizes.small
-          ? Theme.of(context).textTheme.labelMedium!.apply(color: color)
-          : brandTextSize == TextSizes.medium
-              ? Theme.of(context).textTheme.bodyLarge!.apply(color: color)
-              : brandTextSize == TextSizes.large
-                  ? Theme.of(context).textTheme.titleLarge!.apply(color: color)
-                  : Theme.of(context).textTheme.bodyMedium!.apply(color: color),
-    );
-  }
-}
