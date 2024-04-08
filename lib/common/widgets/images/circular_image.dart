@@ -38,8 +38,7 @@ class TCircularImage extends StatelessWidget {
       child: Image(
         image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider,
         fit: fit,
-        color:
-            THelperFunctions.isDarkMode(context) ? TColors.white : TColors.dark,
+        color:overlayColor,
       ),
     );
   }

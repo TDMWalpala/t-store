@@ -7,7 +7,10 @@ import 'package:t_store/utils/constants/image_strings.dart';
 class TUserProfile extends StatelessWidget {
   const TUserProfile({
     super.key,
+    required this.onPressed,
   });
+
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +30,16 @@ class TUserProfile extends StatelessWidget {
       ),
       subtitle: Text(
         'tharindu@gmail.com',
-        style: Theme.of(context)
-            .textTheme
-            .bodyMedium!
-            .apply(color: TColors.white),
+        style:
+            Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.white),
       ),
-      trailing: IconButton(onPressed: (){}, icon: const Icon(Iconsax.edit, color: TColors.white,),),
+      trailing: IconButton(
+        onPressed: onPressed,
+        icon: const Icon(
+          Iconsax.edit,
+          color: TColors.white,
+        ),
+      ),
     );
   }
 }

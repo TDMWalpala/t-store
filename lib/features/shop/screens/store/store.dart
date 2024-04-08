@@ -67,7 +67,7 @@ class StoreScreen extends StatelessWidget {
                               mainAxisExtent: 80,
                               itemBuilder: (_, index) {
                                 return const TBrandCard(
-                                  showBorder: false,
+                                  showBorder: true,
                                 );
                               })
                         ],
