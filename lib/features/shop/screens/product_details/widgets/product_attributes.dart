@@ -83,7 +83,8 @@ class TProductAttributes extends StatelessWidget {
         const SizedBox(
           height: TSizes.spaceBtwItems,
         ),
-        const Column(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TSectionHeading(
               title: 'Colors',
@@ -91,11 +92,70 @@ class TProductAttributes extends StatelessWidget {
             SizedBox(
               height: TSizes.spaceBtwItems / 2,
             ),
-            TChoiceChip(text: 'Green', selected: false,),
+            Wrap(
+              spacing: 8,
+              children: [
+                TChoiceChip(
+                  text: 'Green',
+                  selected: false,
+                  onSelected: (value) {},
+                ),
+                TChoiceChip(
+                  text: 'Blue',
+                  selected: true,
+                  onSelected: (value) {},
+                ),
+                TChoiceChip(
+                  text: 'Orange',
+                  selected: false,
+                  onSelected: (value) {},
+                ),
+                TChoiceChip(
+                  text: 'Yellow',
+                  selected: false,
+                  onSelected: (value) {},
+                ),
+              ],
+            )
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TSectionHeading(
+              title: 'Size',
+            ),
+            SizedBox(
+              height: TSizes.spaceBtwItems / 2,
+            ),
+            Wrap(
+              spacing: 8,
+              children: [
+                TChoiceChip(
+                  text: 'EU 34',
+                  selected: false,
+                  onSelected: (value) {},
+                ),
+                TChoiceChip(
+                  text: 'EU 36',
+                  selected: true,
+                  onSelected: (value) {},
+                ),
+                TChoiceChip(
+                  text: 'EU 38',
+                  selected: false,
+                  onSelected: (value) {},
+                ),
+                TChoiceChip(
+                  text: 'EU 40',
+                  selected: false,
+                  onSelected: (value) {},
+                ),
+              ],
+            )
           ],
         )
       ],
     );
   }
 }
-

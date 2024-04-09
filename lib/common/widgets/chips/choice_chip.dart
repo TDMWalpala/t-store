@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:t_store/utils/constants/colors.dart';
+import 'package:t_store/utils/helpers/helper_functions.dart';
 
 class TChoiceChip extends StatelessWidget {
   const TChoiceChip({
@@ -15,11 +17,27 @@ class TChoiceChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChoiceChip(
-      label: Text(text),
-      selected: selected,
-      onSelected: onSelected,
-      labelStyle: TextStyle(color: selected ? TColors.white : null),
+    final isColor = THelperFunctions.getColor(text) != null;
+    return Theme(
+      data: Theme.of(context).copyWith(canvasColor: Colors.transparent),
+      child: ChoiceChip(
+        label: isColor ? const SizedBox() : Text(text),
+        selected: selected,
+        onSelected: onSelected,
+        labelStyle: TextStyle(color: selected ? TColors.white : null),
+        avatar: isColor
+            ? TCircularContainer(
+                width: 50,
+                height: 50,
+                background: THelperFunctions.getColor(text)!,
+              )
+            : null,
+        shape: isColor ? const CircleBorder() : null,
+        backgroundColor:
+            isColor ? THelperFunctions.getColor(text)! : null,
+        padding: isColor ? const EdgeInsets.all(0) : null,
+        labelPadding: isColor ? const EdgeInsets.all(0) : null,
+      ),
     );
   }
 }
