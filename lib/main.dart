@@ -4,7 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:t_store/app.dart';
-import 'package:t_store/data/repositories/authentication_repository.dart';
+import 'package:t_store/data/repositories/auth/authentication_repository.dart';
 
 import 'firebase_options.dart';
 

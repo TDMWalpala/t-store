@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
-import 'package:t_store/features/auth/controllers.onboarding/onboarding.controller.dart';
+import 'package:t_store/features/auth/controllers/onboarding/onboarding.controller.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/features/auth/screens/onboarding/widgets/onboarding_dot_navigation.dart';
