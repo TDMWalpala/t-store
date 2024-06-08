@@ -61,12 +61,12 @@ class UserModel {
       final data = document.data()!;
       return UserModel(
         id: document.id,
-        firstName: data['firstName'] ?? '',
-        lastName: data['lastName'] ?? '',
-        username: data['username'] ?? '',
-        email: data['email'] ?? '',
-        phoneNumber: data['phoneNumber'] ?? '',
-        profilePicture: data['profilePicture'] ?? '',
+        firstName: data['FirstName'] ?? '',
+        lastName: data['LastName'] ?? '',
+        username: data['Username'] ?? '',
+        email: data['Email'] ?? '',
+        phoneNumber: data['PhoneNumber'] ?? '',
+        profilePicture: data['ProfilePicture'] ?? '',
       );
     } else {
       // Return a default UserModel when document data is null
