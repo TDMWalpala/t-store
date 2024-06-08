@@ -4,6 +4,7 @@ import 'package:t_store/data/repositories/auth/authentication_repository.dart';
 import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/features/auth/screens/signup/verify_email.dart';
 import 'package:t_store/features/personalization/models/user_model.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/helpers/network_manager.dart';
 import 'package:t_store/utils/popups/full_screen_loader.dart';
 import 'package:t_store/utils/popups/loaders.dart';
@@ -24,7 +25,7 @@ class SignupController extends GetxController {
   Future<void> signup() async {
     try {
       TFullScreenLoader.openLoadingDialog(
-          'We are processing your information...', '');
+          'We are processing your information...', TImages.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
