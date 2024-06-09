@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:t_store/common/widgets/shimmer/shimmer.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -30,15 +32,30 @@ class TCircularImage extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-        color:backgroundColor ?? (THelperFunctions.isDarkMode(context)
-            ? TColors.black
-            : TColors.white),
+        color: backgroundColor ??
+            (THelperFunctions.isDarkMode(context)
+                ? TColors.black
+                : TColors.white),
         borderRadius: BorderRadius.circular(100),
       ),
-      child: Image(
-        image: isNetworkImage ? NetworkImage(image) : AssetImage(image) as ImageProvider,
-        fit: fit,
-        color:overlayColor,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Center(
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  fit: fit,
+                  color: overlayColor,
+                  imageUrl: image,
+                  progressIndicatorBuilder: (context, url, progress) =>
+                      TShimmerEffect(width: width, height: height),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image(
+                  image: AssetImage(image),
+                  fit: fit,
+                  color: overlayColor,
+                ),
+        ),
       ),
     );
   }
