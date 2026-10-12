@@ -3,27 +3,42 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
-import 'package:t_store/features/shop/controllers/home_controller.dart';
-import 'package:t_store/utils/constants/colors.dart ';
+import 'package:t_store/common/widgets/shimmer/shimmer.dart';
+import 'package:t_store/features/shop/controllers/banner_controller.dart';
+import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class TPromoSlider extends StatelessWidget {
-  const TPromoSlider({
-    super.key, required this.banners,
-  });
-  final List<String> banners;
+  const TPromoSlider({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
+    final controller = Get.put(BannerController());
+
     return Column(
       children: [
-        CarouselSlider(
-          options: CarouselOptions(
-              viewportFraction: 1,
-              onPageChanged: (index, _) =>
-                  controller.updatePageIndicator(index)),
-          items: banners.map((url) => TRoundedImage(imageUrl: url)).toList(),
-        ),
+        Obx(() {
+          if (controller.isLoading.value) {
+            return const TShimmerEffect(width: double.infinity, height: 190);
+          }
+
+          if (controller.banners.isEmpty) {
+            return const SizedBox.shrink();
+          }
+
+          return CarouselSlider(
+            options: CarouselOptions(
+                viewportFraction: 1,
+                onPageChanged: (index, _) =>
+                    controller.updatePageIndicator(index)),
+            items: controller.banners
+                .map((banner) => TRoundedImage(
+                      imageUrl: banner.imageUrl,
+                      isNetworkImage: true,
+                    ))
+                .toList(),
+          );
+        }),
         const SizedBox(
           height: TSizes.spaceBtwItems,
         ),
@@ -32,7 +47,7 @@ class TPromoSlider extends StatelessWidget {
             () => Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                for (int i = 0; i < banners.length; i++)
+                for (int i = 0; i < controller.banners.length; i++)
                   TCircularContainer(
                     width: 20,
                     height: 4,
